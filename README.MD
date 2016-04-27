@@ -1,1 +1,1 @@
-# ecommerce
+# Criando repositório do projeto ecommerce
