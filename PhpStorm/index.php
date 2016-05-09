@@ -33,20 +33,39 @@ require_once "connect/connect.php";
         <table>
             <tr>
                 <?php
-                if (isset($_GET['idcat'])){
-                    $idCat=$_GET["idcat"];
-                    $produto = $pdo->prepare("select * from ecommerce.produtos where idcat=? order by idproduto asc");
-                    $produto->execute(array($idCat));
+                    if(isset($_GET['page']))
+                    {
+                        $page= $_GET['page'];
+                    }
+                    else
+                    {
+                        $page=1;
+                    }
+                    $produto = $pdo->prepare("select * from ecommerce.produtos order by idproduto asc");
+                    $produto->execute();
+                    $loop = 4;
+                    $i=1;
+                    $num_rows = $produto->rowCount();
+                    $rows_per_page= 8;
+                    $lastpage= ceil($num_rows / $rows_per_page);
+                    $page=(int)$page;
+                    if($page > $lastpage){
+                        $page= $lastpage;
+                    }
+                    if($page < 1)
+                    {
+                        $page=1;
+                    }
+                    $limit= 'LIMIT '. ($page -1) * $rows_per_page . ',' .$rows_per_page;
+                    $prod =$pdo->prepare("select * from ecommerce.produtos order by idproduto asc $limit");
+                    $prod->execute();
                     include_once 'includes/produtos.php';
-                } else{
-                    $idCat=1;
-                    $produto = $pdo->prepare("select * from ecommerce.produtos where idcat=? order by idproduto asc");
-                    $produto->execute(array($idCat));
-                    include_once 'includes/produtos.php';
-                }
                 ?>
             </tr>
         </table>
+        <?php
+        include_once 'includes/pagina_index.php';
+        ?>
         <footer id="pie">
             <br>Dereitos Reservados &copy; 2016
         </footer>

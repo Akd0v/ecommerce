@@ -35,20 +35,34 @@
         <table>
             <tr>
                 <?php
+                if(isset($_GET['page']))
+                {
+                    $page= $_GET['page'];
+                }
+                else
+                {
+                    $page=1;
+                }
                 if (isset($_GET["idsubcat"])){
                     $idSubCat=$_GET["idsubcat"];
                     $produto = $pdo->prepare("select * from ecommerce.produtos where idsubcat=? order by idproduto asc");
                     $produto->execute(array($idSubCat));
+                    include_once 'includes/pag_query_subcategorias.php';
                     include_once 'includes/produtos.php';
-                } else{
+                } else
+                {
                     $idSubCat=1;
                     $produto = $pdo->prepare("select * from ecommerce.produtos where idsubcat=? order by idproduto asc");
                     $produto->execute(array($idSubCat));
+                    include_once 'includes/pag_query_subcategorias.php';
                     include_once 'includes/produtos.php';
-                }
+                }               
                 ?>
             </tr>
         </table>
+        <?php
+        include_once 'includes/pagina_subcategorias.php';
+        ?>
         <footer id="pie">
             <br>Dereitos Reservados &copy; 2016
         </footer>

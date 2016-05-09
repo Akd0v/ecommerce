@@ -33,20 +33,34 @@
                 <table>
                     <tr>
                         <?php
+                        if(isset($_GET['page']))
+                        {
+                            $page= $_GET['page'];
+                        }
+                        else
+                        {
+                            $page=1;
+                        }
                         if (isset($_GET['idcat'])){
                             $idCat=$_GET["idcat"];
                             $produto = $pdo->prepare("select * from ecommerce.produtos where idcat=? order by idproduto asc");
                             $produto->execute(array($idCat));
+                            include_once 'includes/pag_query_categorias.php';
                             include_once 'includes/produtos.php';
-                        } else{
+                        } else
+                        {
                             $idCat=1;
                             $produto = $pdo->prepare("select * from ecommerce.produtos where idcat=? order by idproduto asc");
                             $produto->execute(array($idCat));
+                            include_once 'includes/pag_query_categorias.php';
                             include_once 'includes/produtos.php';
                         }
                         ?>
                     </tr>
                 </table>
+                <?php
+                include_once 'includes/pagina_categorias.php';
+                ?>
                 <footer id="pie">
                     <br>Dereitos Reservados &copy; 2016
                 </footer>
