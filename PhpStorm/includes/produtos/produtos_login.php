@@ -7,7 +7,7 @@ foreach ($prod->fetchAll() as $result3):
             <figcaption>
                 <strong><?= $result3['nome'] . $result3['resumem']; ?></strong>
             </figcaption>
-            <br><strong>Por: R$ <?= $result3['precio']; ?></strong>
+            <br><strong>Por: R$ <?= number_format($result3['precio'],2,",",".");?></strong>
             <br><br><input type="button" class="kk" value="Adicionar ao carrinho">
         </td>
         <?php
@@ -18,7 +18,7 @@ foreach ($prod->fetchAll() as $result3):
             <figcaption>
                 <strong><?= $result3['nome'] . $result3['resumem']; ?></strong>
             </figcaption>
-            <br><strong>Por: R$ <?= $result3['precio']; ?></strong>
+            <br><strong>Por: R$ <?= number_format($result3['precio'],2,",",".");?></strong>
             <br><br><input type="button" class="kk" value="Adicionar ao carrinho">
         </td>
         </tr>

@@ -7,7 +7,7 @@ foreach ($prod->fetchAll() as $result3):
             <figcaption>
                 <strong><?= $result3['nome'] . $result3['resumem']; ?></strong>
             </figcaption>
-            <br><strong>Por: R$ <?= $result3['precio']; ?></strong>
+            <br><strong>Por: R$ <?= number_format($result3['precio'],2,",",".");?></strong>
         </td>
         <?php
     } elseif ($i = $loop)
@@ -17,7 +17,7 @@ foreach ($prod->fetchAll() as $result3):
             <figcaption>
                 <strong><?= $result3['nome'] . $result3['resumem']; ?></strong>
             </figcaption>
-            <br><strong>Por: R$ <?= $result3['precio']; ?></strong>
+            <br><strong>Por: R$ <?= number_format($result3['precio'],2,",",".");?></strong>
         </td>
         </tr>
         <tr>
