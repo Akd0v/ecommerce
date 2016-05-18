@@ -24,13 +24,13 @@ if (isset($_SESSION['user'])){?>
                 <label id="dados">Apellido</label><br>
                 <input type="text" class="control" name="apellido" autocomplete="on"><br><br>
                 <label id="dados">E-mail</label><br>
-                <input type="email" class="control" name="email" autocomplete="on" required><br><br>
+                <input type="email" class="control" name="email" size="35px" autocomplete="on" required><br><br>
                 <label id="dados">Endereço</label><br>
-                <input type="text" class="control" name="endereço" autocomplete="on" required><br><br>
+                <textarea name="endereço" cols="27" rows="5" class="control" required></textarea><br><br>
                 <label id="dados">Senha</label><br>
-                <input type="password" class="control" name="password1" autocomplete="off" required><br><br>
+                <input type="password" class="control" name="password1" placeholder="mais de cinco caracteres" size="25px" autocomplete="off" required><br><br>
                 <label id="dados">Repetir senha</label><br>
-                <input type="password" class="control" name="password2" autocomplete="off" required><br><br>
+                <input type="password" class="control" name="password2" placeholder="mais de cinco caracteres" size="25px" autocomplete="off" required><br><br>
                 <input type="submit" class="kk" value="Cadastrar">
             </form>
         
