@@ -1,5 +1,12 @@
-﻿# Criando repositório do projeto ecommerce
+﻿# Criando repositório do projeto ecommerce.
+# 1-Montar layout do site baseado nos protótipos.
+# 2-Desenhar tabelas com mysql workbench.
+# 3-Exibição de produtos por categoria.
+# 4-Vitrine de produtos.
+# 5-Árvore de navegação.
+# 6-Paginação da vitrine.
+# 7-Registro e login.
+# 8-Implementar buscador.
+# 9-Carrinho de compras.
 
-http://stackoverflow.com/questions/13002327/using-recursion-to-build-navigation
-http://forum.imasters.com.br/topic/508998-menu-do-forum-imasters-em-php-e-mysql-como-fazer-dessa-outra-maneira/
-http://compoune.com/q/12851/sistema-de-categorias-e-subcategorias-filhos-infinitas
+
