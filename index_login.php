@@ -68,7 +68,7 @@ if (isset($_SESSION['user'])){?>
                         $prod =$pdo->query("select * from ecommerce.produtos P where P.nome like '%$search%'  or P.resumem like '%$search%' order by idproduto asc $limit");
                         if ($prod->rowCount()>0)
                         {
-                            include_once 'includes/produtos/produtos.php';
+                            include_once 'includes/produtos/produtos_login.php';
                         }else
                         {
                             ?>
