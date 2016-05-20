@@ -8,5 +8,5 @@
 # 7-Registro e login.
 # 8-Implementar buscador.
 # 9-Carrinho de compras.
-
+# 10-Funções organizadas.
 
