@@ -35,6 +35,10 @@ require_once "class/produtos.php";
     <section id="seccion">
         <h2><a href="http://localhost:8080/index.php"><ins>Home</ins></a><br><br></h2>
         <?php
+        $loop = 4;
+        $i = 1;
+        $rows_per_page= 8;
+        //Buscador
         if (isset($_POST['search']))
         {
             $search = $_POST['search'];
@@ -51,22 +55,8 @@ require_once "class/produtos.php";
                         $page=1;
                     }
                     $pro = produtos::Singlenton();
-                    $prodsearch = $pro->buscar($search);
-                    $loop = 4;
-                    $i=1;
-                    $num_rows = $prodsearch->rowCount();
-                    $rows_per_page= 8;
-                    $lastpage= ceil($num_rows / $rows_per_page);
-                    $page=(int)$page;
-                    if($page > $lastpage){
-                        $page= $lastpage;
-                    }
-                    if($page < 1)
-                    {
-                        $page=1;
-                    }
-                    $limit= 'LIMIT '. ($page -1) * $rows_per_page . ',' .$rows_per_page;
-                    $prod = $pro->buscar2($search,$limit);
+                    $num_rows = $pro->getSearchProdutosNumRows($search);
+                    $prod = $pro->produtoSearch($search,$page,$rows_per_page);
                     if ($prod->rowCount()>0)
                     {
                         include_once 'includes/produtos/produtos.php';
@@ -85,6 +75,7 @@ require_once "class/produtos.php";
             <?php
         } else
         {
+            $search = null;
             ?>
             <table>
                 <tr>
@@ -95,21 +86,8 @@ require_once "class/produtos.php";
                         $page = 1;
                     }
                     $pro = produtos::Singlenton();
-                    $produto = $pro->getProdutos();
-                    $loop = 4;
-                    $i = 1;
-                    $num_rows = $produto->rowCount();
-                    $rows_per_page = 8;
-                    $lastpage = ceil($num_rows / $rows_per_page);
-                    $page = (int)$page;
-                    if ($page > $lastpage) {
-                        $page = $lastpage;
-                    }
-                    if ($page < 1) {
-                        $page = 1;
-                    }
-                    $limit = 'LIMIT ' . ($page - 1) * $rows_per_page . ',' . $rows_per_page;
-                    $prod = $pro->getProdutos2($limit);
+                    $num_rows = $pro->getProdutosNumRows();
+                    $prod = $pro->produtoPage($page,$rows_per_page);
                     include_once 'includes/produtos/produtos.php';
                     ?>
                 </tr>

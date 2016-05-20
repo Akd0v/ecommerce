@@ -1,5 +1,5 @@
 <?php
-foreach ($prod->fetchAll() as $result3):
+foreach ($prod as $result3):
     if ($i < $loop) {
         ?>
         <td>

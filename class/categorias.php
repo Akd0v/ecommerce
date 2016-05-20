@@ -2,7 +2,7 @@
 require_once 'db_connect.php';
 /**
  * Created by PhpStorm.
- * User: Frank
+ * User: JulioC
  * Date: 16/05/2016
  * Time: 11:04
  */
@@ -15,14 +15,17 @@ class categorias
      */
     private $pdo;
 
+    /**
+     * categorias constructor.
+     */
     private function __construct()
     {
         $this->pdo = db_connect::Singlenton()->pdo;
     }
 
     /**
-     * @return $this
-     */
+     * @return mixed
+     */     
     public static function Singlenton()
     {
         if (!isset(self::$instance)) {
@@ -33,13 +36,13 @@ class categorias
     }
 
     /**
-     * @return mixed
+     * @return todas as categoria e subcategorias
      */
     public function getCategorias()
     {
         try
         {
-            $query = $this->pdo->prepare('SELECT * FROM ecommerce.categorias');
+            $query = $this->pdo->prepare('SELECT * FROM ecommerce.categorias ORDER  BY nome ASC');
             $query->execute();
             return $query;
             $this->pdo = null;
@@ -50,6 +53,10 @@ class categorias
         }
     }
 
+    /**
+     * @param $idcat
+     * @return categoria por suo id
+     */
     public function getCategoriasIdCat($idcat)
     {
         try
@@ -65,6 +72,28 @@ class categorias
             $e->getMessage();
         }
     }
+
+    /**
+     * @return arreglo de categorias
+     */
+    public function menu()
+    {
+        try
+        {
+            $query = $this->pdo->query("SELECT * FROM ecommerce.categorias ORDER BY nome ASC");
+            while($row = $query->fetch(PDO::FETCH_OBJ))
+            {
+                $array_menu[$row->pai][$row->idcat] = array('nome' => $row->nome, 'pai' => $row->pai, 'idcat' => $row->idcat, 'nivel' => $row->nivel);
+            }
+            return $array_menu;
+            $this->pdo = null;
+        }
+        catch (PDOException $e)
+        {
+            $e->getMessage();
+        }
+    }
+
     /*public function delete_Categorias($idcat)
     {
         try
@@ -80,23 +109,23 @@ class categorias
         }
     }*/
 
-   /* public function insert_Categorias($nome, $pai, $nivel)
-    {
-        try
-        {
-            $query = $this->pdo->prepare('INSERT INTO ecommerce.categorias VALUES (NULL , ?, ?, ?)');
-            $query->bindParam(1,$nome);
-            $query->bindParam(2,$pai);
-            $query->bindParam(3,$nivel);
-            $query->execute();
-            $this->pdo = null;
+    /* public function insert_Categorias($nome, $pai, $nivel)
+     {
+         try
+         {
+             $query = $this->pdo->prepare('INSERT INTO ecommerce.categorias VALUES (NULL , ?, ?, ?)');
+             $query->bindParam(1,$nome);
+             $query->bindParam(2,$pai);
+             $query->bindParam(3,$nivel);
+             $query->execute();
+             $this->pdo = null;
 
-        }
-        catch (PDOException $e)
-        {
-            $e->getMessage();
-        }
-    }*/
+         }
+         catch (PDOException $e)
+         {
+             $e->getMessage();
+         }
+     }*/
 
     /*public function update_Categorias($idcat, $nome, $pai, $nivel)
     {
@@ -115,24 +144,6 @@ class categorias
             $e->getMessage();
         }
     }*/
-
-    public function menu()
-    {
-        try
-        {
-            $query = $this->pdo->query("SELECT * FROM ecommerce.categorias ORDER BY nome ASC");
-            while($row = $query->fetch(PDO::FETCH_OBJ))
-            {
-                $array_menu[$row->pai][$row->idcat] = array('nome' => $row->nome, 'pai' => $row->pai, 'idcat' => $row->idcat, 'nivel' => $row->nivel);
-            }
-            return $array_menu;
-            $this->pdo = null;
-        }
-        catch (PDOException $e)
-        {
-            $e->getMessage();
-        }
-    }
 
     public function __clone()
     {

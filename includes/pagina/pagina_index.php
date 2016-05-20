@@ -3,6 +3,8 @@ if($num_rows != 0)
 {
     $nextpage= $page +1;
     $prevpage= $page -1;
+    $pro = produtos::Singlenton();
+    $lastpage = $pro->getLastPage($rows_per_page,$search);
     ?>
     <article id="pagina">
         <ul><?php

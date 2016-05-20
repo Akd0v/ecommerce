@@ -2,7 +2,7 @@
 require_once 'db_connect.php';
 /**
  * Created by PhpStorm.
- * User: Frank
+ * User: JulioC
  * Date: 11/04/2016
  * Time: 15:44
  */
@@ -14,6 +14,9 @@ class users
      */
     private $pdo;
 
+    /**
+     * users constructor.
+     */
     private function __construct()
     {
         try
@@ -28,7 +31,7 @@ class users
     }
 
     /**
-     * @return $this
+     * @return mixed
      */
     public static function Singlenton()
     {
@@ -41,7 +44,8 @@ class users
     }
 
     /**
-     * @return mixed
+     * @param $user
+     * @return confirma si o usuário existe
      */
     public  function getUsers($user)
     {
@@ -55,10 +59,15 @@ class users
         }
         catch (PDOException $e)
         {
-            $e->getMessage();
+            $e->getMessage("No existe o usuário");
         }
     }
 
+    /**
+     * @param $user
+     * @param $pass
+     * @return valida autenticação do usuário
+     */
     public  function getUsersPassword($user,$pass)
     {
         try
@@ -75,21 +84,15 @@ class users
             $e->getMessage();
         }
     }
-   /* public function delete_Users($id)
-    {
-        try
-        {
-            $query = $this->pdo->prepare('DELETE FROM ecommerce.users where iduser = ?');
-            $query->bindParam(1, $id);
-            $query->execute();
-            $this->pdo = null;
-        }
-        catch (PDOException $e)
-        {
-            $e->getMessage();
-        }
-    }*/
 
+    /**
+     * @param $user
+     * @param $nome
+     * @param $apellido
+     * @param $email
+     * @param $endereço
+     * @param $password
+     */
     public function insert_Users($user,$nome, $apellido, $email, $endereço, $password)
     {
         try
@@ -110,6 +113,21 @@ class users
             $e->getMessage();
         }
     }
+
+    /* public function delete_Users($id)
+    {
+        try
+        {
+            $query = $this->pdo->prepare('DELETE FROM ecommerce.users where iduser = ?');
+            $query->bindParam(1, $id);
+            $query->execute();
+            $this->pdo = null;
+        }
+        catch (PDOException $e)
+        {
+            $e->getMessage();
+        }
+    }*/
 
    /* public function update_Users($iduser, $user,$nome, $apellido, $email, $endereço, $password)
     {

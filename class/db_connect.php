@@ -2,7 +2,7 @@
 
 /**
  * Created by PhpStorm.
- * User: Frank
+ * User: JulioC
  * Date: 19/05/2016
  * Time: 08:21
  */
@@ -14,7 +14,9 @@ class db_connect
     private  static $pass = 'mestre';
     public $pdo;
 
-
+    /**
+     * db_connect constructor.
+     */
   private function __construct()
     {
         try {
@@ -28,6 +30,9 @@ class db_connect
         }
     }
 
+    /**
+     * @return mixed
+     */
     public static function Singlenton()
     {
         if (!isset(self::$instance)) {
