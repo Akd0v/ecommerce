@@ -4,20 +4,7 @@ require_once 'class/produtos.php';
 require_once 'class/categorias.php';
 if (isset($_SESSION['user'])){?>
     <!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="description" content="Meu Ecommerce">
-        <meta name="keywords" content="HTML5, CSS3, JavaScript">
-        <title>Minha Loja</title>
-        <link rel="stylesheet" href="CSS/style.css">
-    </head>
-    <body>
-    <div id="agrupar">
-        <header id="cabecera">
-
-            <h1><img src="fotos/images.jpg"> Minha Loja</h1>
-
+    <?php include_once 'includes/inicio.php';?>
             <ul id="menu2">
                 <form action="index_login.php" method="post">
                     <input type="text" id="search"  placeholder="encontre o seu produto" size="30" name="search">
