@@ -40,7 +40,7 @@ if(isset($_GET['acao'])){
             ?>
             <script>alert('Não tem produtos no carrinho')</script>
             <script>window.location = "carrinho.php"</script>
-    <?php
+            <?php
         }
     }
 
@@ -69,11 +69,12 @@ if(isset($_GET['acao'])){
         <form action="?acao=update" method="post">
             <tbody>
             <?php
-            if(count($_SESSION['carrinho']) == 0){
-                echo '<tr><td colspan="5">Não há produto no carrinho</td></tr>';
+            if(count($_SESSION['carrinho']) == 0){?>
+                <tr><td colspan="5">Não há produto no carrinho</td></tr>
+                <?php
             }else{
                 require_once 'class/produtos.php';
-               // require("connect/connect.php");
+                // require("connect/connect.php");
                 $total = 0;
                 foreach($_SESSION['carrinho'] as $idproduto => $qtd){
                     $pro = produtos::Singlenton();
