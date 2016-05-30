@@ -47,7 +47,7 @@ if (isset($_SESSION['user'])){?>
                         <?php
                         if(isset($_GET['page']))
                         {
-                            $page= $_GET['page'];
+                            $page= intval($_GET['page']);
                         }
                         else
                         {
@@ -80,7 +80,7 @@ if (isset($_SESSION['user'])){?>
                     <tr>
                         <?php
                         if (isset($_GET['page'])) {
-                            $page = $_GET['page'];
+                            $page = intval($_GET['page']);
                         } else {
                             $page = 1;
                         }

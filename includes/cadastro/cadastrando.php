@@ -43,7 +43,7 @@ if (strlen($password1)>5) {
         if ($users->rowCount() > 0)
         {
         ?>
-            <script>alert('O usuário: <?= $user ?> já existe, digite outro nome de usuário.')</script>
+            <script>alert('O usuário: <?= $user;?> já existe, digite outro nome de usuário.')</script>
             <script>window.location = "cadastro.php"</script>
         <?php
         }else

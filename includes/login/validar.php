@@ -5,7 +5,7 @@ session_start();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Validar</title>
+    <title>Validar Login</title>
 </head>
 <body>
 <?php

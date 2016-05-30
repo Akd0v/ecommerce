@@ -34,7 +34,7 @@ require_once "class/categorias.php";
     ?>
     <section id="seccion">
         <?php
-        $idCat = $_GET['idcat'];
+        $idCat = intval($_GET['idcat']);
         if (isset($idCat))
         {
             $cat = categorias::Singlenton();
@@ -49,16 +49,16 @@ require_once "class/categorias.php";
         <table>
             <tr>
                 <?php
-                if(isset($_GET['page']))
+                if(isset($_GET["page"]))
                 {
-                    $page= $_GET['page'];
+                    $page= intval($_GET["page"]);
                 }
                 else
                 {
                     $page=1;
                 }
-                if (isset($_GET['idcat'])){
-                    $idCat=$_GET["idcat"];
+                if (isset($_GET["idcat"])){
+                    $idCat= intval($_GET["idcat"]);
                     $produto = produtos::Singlenton();
                     $prodCat = $produto->produtoCategorias($idCat);
                     include_once 'includes/pagina/pag_query_categorias.php';

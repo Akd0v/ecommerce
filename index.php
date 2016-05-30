@@ -48,7 +48,7 @@ require_once "class/produtos.php";
                     <?php
                     if(isset($_GET['page']))
                     {
-                        $page= $_GET['page'];
+                        $page= intval($_GET['page']);
                     }
                     else
                     {
@@ -81,7 +81,7 @@ require_once "class/produtos.php";
                 <tr>
                     <?php
                     if (isset($_GET['page'])) {
-                        $page = $_GET['page'];
+                        $page = intval($_GET['page']);
                     } else {
                         $page = 1;
                     }

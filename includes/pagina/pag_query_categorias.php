@@ -4,7 +4,7 @@ $i=1;
 $rows_per_page= 8;
 $num_rows = $prodCat->rowCount();
 $lastpage= ceil($num_rows / $rows_per_page);
-$page=(int)$page;
+$page=intval($page);
 if($page > $lastpage){
     $page= $lastpage;
 }

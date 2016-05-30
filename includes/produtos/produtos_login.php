@@ -16,7 +16,7 @@ foreach ($prod as $result3):
         <?php
     } elseif ($i = $loop)
     {
-        $idproduto = $result3['idproduto'];?>
+        $idproduto = intval($result3['idproduto']);?>
         <form action="../../carrinho.php?acao=add&&idproduto=<?= $idproduto?>" method="post">
             <td>
                 <img src="<?= $result3['caminho'] . $result3['foto']; ?>">

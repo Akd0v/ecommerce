@@ -51,14 +51,14 @@ if (isset($_SESSION['user'])){?>
                     <?php
                     if(isset($_GET['page']))
                     {
-                        $page= $_GET['page'];
+                        $page= intval($_GET['page']);
                     }
                     else
                     {
                         $page=1;
                     }
                     if (isset($_GET['idcat'])){
-                        $idCat=$_GET["idcat"];
+                        $idCat=intval($_GET["idcat"]);
                         $pro = produtos::Singlenton();
                         $prodCat = $pro->produtoCategorias($idCat);
                         include_once 'includes/pagina/pag_query_categorias.php';
