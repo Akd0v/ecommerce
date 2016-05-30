@@ -8,7 +8,7 @@ if(!isset($_SESSION['carrinho'])){
 if(isset($_GET['acao'])){
 
     if($_GET['acao'] == 'add'){
-        $idproduto = $_GET['idproduto'];
+        $idproduto = intval($_GET['idproduto']);
         if(!isset($_SESSION['carrinho'][$idproduto])){
             $_SESSION['carrinho'][$idproduto] = 1;
         }else{
@@ -17,7 +17,7 @@ if(isset($_GET['acao'])){
     }
 
     if($_GET['acao'] == 'delete'){
-        $idproduto = $_GET['idproduto'];
+        $idproduto = intval($_GET['idproduto']);
         if(isset($_SESSION['carrinho'][$idproduto])){
             unset($_SESSION['carrinho'][$idproduto]);
         }
@@ -70,11 +70,10 @@ if(isset($_GET['acao'])){
             <tbody>
             <?php
             if(count($_SESSION['carrinho']) == 0){?>
-                <tr><td colspan="5">Não há produto no carrinho</td></tr>
-                <?php
+                <tr><td colspan="5">Não há produto no carrinho</td></tr>';
+                    <?php
             }else{
                 require_once 'class/produtos.php';
-                // require("connect/connect.php");
                 $total = 0;
                 foreach($_SESSION['carrinho'] as $idproduto => $qtd){
                     $pro = produtos::Singlenton();
@@ -84,7 +83,6 @@ if(isset($_GET['acao'])){
                     $nome  = $ln['nome'];
                     $precio = number_format($ln['precio'], 2, ',', '.');
                     $sub   = number_format($ln['precio'] * $qtd, 2, ',', '.');
-
                     $total += $ln['precio'] * $qtd;
                     ?>
                     <tr>
